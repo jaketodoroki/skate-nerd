@@ -14,6 +14,20 @@ function index(req, res) {
   })
 }
 
+function create(req, res) {
+  req.body.owner = req.user.profile._id
+  req.body.bust = !!req.body.bust
+  Skatespot.create(req.body)
+  .then(skatespot => {
+    res.render('/skatespots')
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
+}
+
 export {
-  index
+  index,
+  create
 }
