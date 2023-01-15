@@ -1,4 +1,12 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
-
+<section>
+  <h1>Skate Spots</h1>
+  <h2>All Spots:</h2>
+  <ul>
+    <% skatespots.forEach(skatespot => { %>
+     <li> Skatespot <%= skatespot.name %> is <%= skatespot.bust ? 'bust' : 'not a bust' %></li>
+    <% }) %>
+  </ul>
+</section>
 <%- include('../partials/footer') %>
