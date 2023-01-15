@@ -2,6 +2,19 @@
 <%- include('../partials/nav') %>
 <section>
   <h1>Skate Spots</h1>
+  <% if (user) { %>
+    <form action="/skatespots" mehod="POST">
+      <label>
+        Spot:
+        <input type="text" name="name" autocomplete="off">
+      </label>
+      <label>
+        Bust?:
+        <input type="checkbox" name="bust">
+      </label>
+      <button type="submit">Add Spot</button>
+    </form>
+  <% } %>
   <h2>All Spots:</h2>
   <ul>
     <% skatespots.forEach(skatespot => { %>
