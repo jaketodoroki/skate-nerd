@@ -6,6 +6,13 @@
   <h1><%= skatespot.name %> skatespot</h1>
   <h2>This spot is <%= skatespot.bust ? 'bust' : 'not a bust' %></h2>
   <% if (user) { %>
+    <ul>
+      <% skatespot.reviews?.forEach(review => { %>
+       <li>
+        <%= review.content %> - <%= review.reviewer.name %>
+       </li>
+      <% }) %>
+    </ul>
    <form 
       action="/skatespots/<%= skatespot._id %>/flip-bust?_method=PATCH"
       method="POST"

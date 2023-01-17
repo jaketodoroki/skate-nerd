@@ -29,7 +29,10 @@ function create(req, res) {
 
 function show(req, res) {
   Skatespot.findById(req.params.id)
-  .populate("owner")
+  .populate([
+    {path: "owner"},
+    {path: "reviews.reviewer"}
+  ])
   .then(skatespot => {
     res.render('skatespots/show', {
       skatespot: skatespot,
