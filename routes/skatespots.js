@@ -10,6 +10,7 @@ router.get('/:id/edit', isLoggedIn, skatespotsCtrl.edit)
 router.post('/', isLoggedIn, skatespotsCtrl.create)
 router.patch('/:id/flip-bust', isLoggedIn, skatespotsCtrl.flipBust)
 router.put('/:id', isLoggedIn, skatespotsCtrl.update)
+router.delete('/:id', isLoggedIn, skatespotsCtrl.delete)
 
 export {
   router

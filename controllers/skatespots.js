@@ -90,11 +90,30 @@ function update(req, res) {
   })
 }
 
+function deleteSpot(req, res){
+  Skatespot.findById(req.params.id)
+  .then(skatespot => {
+    if (skatespot.owner.equals(req.user.profile._id)) {
+      skatespot.delete()
+      .then(() => {
+        res.redirect('/skatespots')
+      })
+    } else {
+      throw new error ('Not Authorized')
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/skatespots')
+  })
+}
+
 export {
   index,
   create,
   show,
   flipBust,
   edit,
-  update
+  update,
+  deleteSpot as delete
 }
