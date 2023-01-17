@@ -1,0 +1,31 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <h1>Edit this Spot</h1>
+  <form 
+    action="/skatespots/<%= skatespot._id %>?_method=PUT"
+    method="POST"
+  >
+  <label>
+    Name:
+    <input 
+      type="text"
+      name="name"
+      value="<%= skatespot.name %>"
+      autocomplete="off"
+    >
+  </label>
+  <label>
+    Bust?
+    <input 
+      type="checkbox"
+      name="bust"
+      <%= skatespot.bust ? 'checked' : '' %>
+    >
+  </label>
+  <button type="submit">Edit the spot</button>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>
