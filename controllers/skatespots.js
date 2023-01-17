@@ -71,10 +71,30 @@ function edit(req, res) {
   })
 }
 
+function update(req, res) {
+  Skatespot.findById(req.params.id)
+  .then(skatespot => {
+    if (skatespot.owner.equals(req.user.profile._id)) {
+      req.body.bust= !!req.body.bust
+      skatespot.updateOne(req.body)
+      .then(()=> {
+        res.redirect(`/skatespots/${skatespot._id}`)
+      })
+    } else {
+      throw new Error('Not authorized')
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/skatespots')
+  })
+}
+
 export {
   index,
   create,
   show,
   flipBust,
-  edit
+  edit,
+  update
 }
