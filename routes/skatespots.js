@@ -7,6 +7,7 @@ const router = Router()
 router.get('/', skatespotsCtrl.index)
 router.get('/:id', skatespotsCtrl.show)
 router.post('/', isLoggedIn, skatespotsCtrl.create)
+router.patch('/:id/flip-bust', isLoggedIn, skatespotsCtrl.flipBust)
 
 export {
   router

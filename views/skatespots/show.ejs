@@ -5,6 +5,16 @@
   <p>Created by <%= skatespot.owner.name %>...</p>
   <h1><%= skatespot.name %> skatespot</h1>
   <h2>This spot is <%= skatespot.bust ? 'bust' : 'not a bust' %></h2>
+  <% if (user) { %>
+   <form 
+      action="/skatespots/<%= skatespot._id %>/flip-bust?_method=PATCH"
+      method="POST"
+      >
+      <button class="btn" type="submit">
+        Make skatespot <%= skatespot.bust ? 'not bust' : 'bust' %>
+      </button>
+   </form>
+  <% } %>
 </section>
 
 <%- include('../partials/footer') %>

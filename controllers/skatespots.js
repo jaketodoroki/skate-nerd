@@ -42,8 +42,24 @@ function show(req, res) {
   })
 }
 
+function flipBust(req, res) {
+  Skatespot.findById(req.params.id)
+  .then(skatespot => {
+    skatespot.bust = !skatespot.bust
+    skatespot.save()
+    .then(()=> {
+      res.redirect(`/skatespots/${skatespot._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/skatespots')
+  })
+}
+
 export {
   index,
   create,
-  show
+  show,
+  flipBust
 }
