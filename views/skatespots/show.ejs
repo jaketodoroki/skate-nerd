@@ -26,6 +26,14 @@
     <button class="btn" type="submit"> Delete Spot</button>
   </form>
   <% } %>
+  <h2>Reviews</h2>
+  <% if (user) { %>
+   <h3>Add a review</h3>
+   <form action="/skatespots/<%= skatespot._id %>/reviews" method="POST">
+    <textarea name="content"></textarea><br>
+    <button>Add Review</button>
+  </form>
+  <% } %>
 </section>
 
 <%- include('../partials/footer') %>

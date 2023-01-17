@@ -108,6 +108,26 @@ function deleteSpot(req, res){
   })
 }
 
+function addReview(req, res) {
+  Skatespot.findById(req.params.id)
+  .then(skatespot => {
+    req.body.reviewer = req.user.profile._id
+    skatespot.reviews.push(req.body)
+    skatespot.save()
+    .then(()=> {
+      res.redirect(`/skatespots/${skatespot._id}`)
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect('/skatespots')
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/skatespots')
+  })
+}
+
 export {
   index,
   create,
@@ -115,5 +135,6 @@ export {
   flipBust,
   edit,
   update,
-  deleteSpot as delete
+  deleteSpot as delete,
+  addReview
 }
