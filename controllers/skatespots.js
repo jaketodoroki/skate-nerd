@@ -19,15 +19,31 @@ function create(req, res) {
   req.body.bust = !!req.body.bust
   Skatespot.create(req.body)
   .then(skatespot => {
-    res.render('/skatespots')
+    res.redirect('/skatespots')
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/')
+    res.redirect('/skatespots')
+  })
+}
+
+function show(req, res) {
+  Skatespot.findById(req.params.id)
+  .populate("owner")
+  .then(skatespot => {
+    res.render('skatespots/show', {
+      skatespot: skatespot,
+      title: 'show'
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/skatespots')
   })
 }
 
 export {
   index,
-  create
+  create,
+  show
 }

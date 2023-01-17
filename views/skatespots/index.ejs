@@ -3,7 +3,7 @@
 <section>
   <h1>Skate Spots</h1>
   <% if (user) { %>
-    <form action="/skatespots" mehod="POST">
+    <form action="/skatespots" method="POST">
       <label>
         Spot:
         <input type="text" name="name" autocomplete="off">
@@ -18,7 +18,10 @@
   <h2>All Spots:</h2>
   <ul>
     <% skatespots.forEach(skatespot => { %>
-     <li> Skatespot <%= skatespot.name %> is <%= skatespot.bust ? 'bust' : 'not a bust' %></li>
+     <li> 
+      Skatespot 
+      <a href="/skatespots/<%= skatespot._id %>"><%= skatespot.name %></a> is <%= skatespot.bust ? 'bust' : 'not a bust' %>
+    </li>
     <% }) %>
   </ul>
 </section>

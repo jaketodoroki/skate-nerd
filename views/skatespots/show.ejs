@@ -1,0 +1,10 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<section>
+  <p>Created by <%= skatespot.owner.name %>...</p>
+  <h1><%= skatespot.name %> skatespot</h1>
+  <h2>This spot is <%= skatespot.bust ? 'bust' : 'not a bust' %></h2>
+</section>
+
+<%- include('../partials/footer') %>

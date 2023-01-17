@@ -5,6 +5,7 @@ import { isLoggedIn } from "../middleware/middleware.js";
 const router = Router()
 
 router.get('/', skatespotsCtrl.index)
+router.get('/:id', skatespotsCtrl.show)
 router.post('/', isLoggedIn, skatespotsCtrl.create)
 
 export {
