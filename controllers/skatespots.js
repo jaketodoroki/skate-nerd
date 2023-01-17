@@ -57,9 +57,24 @@ function flipBust(req, res) {
   })
 }
 
+function edit(req, res) {
+  Skatespot.findById(req.params.id)
+  .then(skatespot => {
+    res.render('skatespots/edit', {
+      title: 'Edit spot',
+      skatespot
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/skatespots')
+  })
+}
+
 export {
   index,
   create,
   show,
-  flipBust
+  flipBust,
+  edit
 }

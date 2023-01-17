@@ -15,6 +15,11 @@
       </button>
    </form>
   <% } %>
+  <% if (skatespot.owner.equals(user?.profile._id)) { %>
+    <a href="/skatespots/<%= skatespot._id %>/edit">
+      <button class="btn">Edit this spot</button>
+    </a>
+  <% } %>
 </section>
 
 <%- include('../partials/footer') %>
