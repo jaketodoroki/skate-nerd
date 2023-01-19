@@ -29,14 +29,17 @@ function create(req, res) {
 
 function show(req, res) {
   Skatespot.findById(req.params.id)
-  .populate([
-    {path: "owner"},
-    {path: "reviews.reviewer"}
-  ])
+  .populate('reviews.reviewer')
   .then(skatespot => {
+    // const review = skatespot.reviews.id(req.body.reviewerId)
+    console.log(req.body)
+    console.log(skatespot)
     res.render('skatespots/show', {
       skatespot: skatespot,
-      title: 'show'
+      title: 'show',
+      // owner,
+      // review,
+      // reviewer
     })
   })
   .catch(err => {
@@ -131,6 +134,51 @@ function addReview(req, res) {
   })
 }
 
+function editReview(req, res) {
+  Skatespot.findById(req.params.skatespotId)
+  .then(skatespot => {
+    const review = skatespot.reviews.id(req.params.reviewId)
+    if (review.reviewer.equals(req.user.profile._id)){
+      res.render('skatespots/editReview', {
+        skatespot,
+        review,
+        title: 'Update Review'
+      })
+    } else {
+      throw new Error('not authorized')
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/skatespots')
+  })
+}
+
+function updateReview(req, res) {
+  Skatespot.findById(req.params.skatespotId)
+  .then(skatespot => {
+    const review = skatespot.reviews.id(req.params.reviewId)
+    if (review.reviewer.equals(req.user.profile._id)){
+      review.set(req.body)
+      console.log(req.body)
+      skatespot.save()
+      .then(()=> {
+        res.redirect(`/skatespots/${skatespot._id}`)
+      })
+      .catch(err => {
+        console.log(err)
+        res.redirect('/skatespots')
+      })
+    } else {
+      throw new Error('not authorized')
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/skatespots')
+  })
+} 
+
 export {
   index,
   create,
@@ -139,5 +187,7 @@ export {
   edit,
   update,
   deleteSpot as delete,
-  addReview
+  addReview,
+  editReview,
+  updateReview
 }
