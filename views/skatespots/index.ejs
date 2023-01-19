@@ -19,7 +19,6 @@
   <ul>
     <% skatespots.forEach(skatespot => { %>
      <li> 
-      Skatespot 
       <a href="/skatespots/<%= skatespot._id %>"><%= skatespot.name %></a> is <%= skatespot.bust ? 'bust' : 'not a bust' %>
     </li>
     <% }) %>
