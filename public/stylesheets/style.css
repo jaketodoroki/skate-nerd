@@ -57,6 +57,7 @@ ul {
 
 p, label, li, button, input {
   font-size: 18px;
+  border-radius: 10px;
 }
 
 button:hover {
