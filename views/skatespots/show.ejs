@@ -5,18 +5,25 @@
   <p>Created by <%= skatespot.owner.name %>...</p>
   <h1><%= skatespot.name %> skatespot</h1>
   <h2>This spot is <%= skatespot.bust ? 'bust' : 'not a bust' %></h2>
-  
-  <% skatespot.reviews?.forEach(review => { %>
-    <p>
-        <%= review.content %>
-      </p>
-      <p> <%= review.reviewer.name %> </p>
-      <% if (review.reviewer._id.equals(user?.profile._id)) { %>
+  <ul>
+    <% skatespot.reviews?.forEach(review => { %>
+      <li>
+        <%= review.content %> - <%= review.reviewer.name %>
+        <% if (review.reviewer._id.equals(user?.profile._id)) { %>
+          <form 
+          action="/skatespots/<%= skatespot._id %>/reviews/<%= review._id %>?_method=DELETE"
+          method="POST"
+          class="inline"
+          >
+          <button class="btn" type="submit">Delete Review</button>
+        </form>
         <a href="/skatespots/<%= skatespot._id %>/reviews/<%= review._id %>/edit">
           <button class="btn">Edit Review</button>
         </a>
-    <% } %>
+        <% } %>
+      </li>
     <% }) %>
+  </ul>
     
 <% if (user) { %>
 <form 

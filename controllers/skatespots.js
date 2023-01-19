@@ -97,21 +97,21 @@ function update(req, res) {
 }
 
 function deleteSpot(req, res){
-  Skatespot.findById(req.params.id)
+  Skatespot.findByIdAndDelete(req.params.id)
   .then(skatespot => {
-    if (skatespot.owner.equals(req.user.profile._id)) {
-      skatespot.delete()
-      .then(() => {
+    // if (skatespot.owner.equals(req.user.profile._id)) {
+    //   skatespot.delete()
+      // .then(() => {
         res.redirect('/skatespots')
       })
-    } else {
-      throw new error ('Not Authorized')
-    }
-  })
+    // } else {
+      // throw new error ('Not Authorized')
+    // }
+  // })
   .catch(err => {
     console.log(err)
     res.redirect('/skatespots')
-  })
+   })
 }
 
 function addReview(req, res) {
@@ -179,6 +179,30 @@ function updateReview(req, res) {
   })
 } 
 
+function deleteReview(req, res) {
+  Skatespot.findById(req.params.skatespotId)
+  .then(skatespot => {
+    const review = skatespot.reviews.id(req.params.reviewId)
+    if (review.reviewer.equals(req.user.profile._id)) {
+      skatespot.reviews.remove(review)
+      skatespot.save()
+      .then(() => {
+        res.redirect(`/skatespots/${skatespot._id}`)
+      })
+      .catch(err => {
+        console.log(err)
+        res.redirect('/skatespots')
+      })
+    } else {
+      throw new Error('not authorized')
+    }
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/skatespots')
+  })
+}
+
 export {
   index,
   create,
@@ -189,5 +213,6 @@ export {
   deleteSpot as delete,
   addReview,
   editReview,
-  updateReview
+  updateReview,
+  deleteReview
 }
