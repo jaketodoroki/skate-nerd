@@ -30,6 +30,7 @@ function create(req, res) {
 function show(req, res) {
   Skatespot.findById(req.params.id)
   .populate('reviews.reviewer')
+  .populate('owner')
   .then(skatespot => {
     // const review = skatespot.reviews.id(req.body.reviewerId)
     console.log(req.body)

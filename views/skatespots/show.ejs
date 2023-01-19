@@ -51,7 +51,7 @@
 <% if (user) { %>
 <h3>Add a review</h3>
 <form action="/skatespots/<%= skatespot._id %>/reviews" method="POST">
-<textarea name="content"></textarea><br>
+<textarea name="content" cols="30" rows="5"></textarea><br>
 <button>Add Review</button>
 </form>
 <% } %>

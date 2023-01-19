@@ -1,9 +1,11 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
-<section>
-  <h1>Skate Spots</h1>
+<section style="display: flex; justify-content: center;">
   <% if (user) { %>
-    <form action="/skatespots" method="POST">
+    <div style="border: 1px solid white; text-align:center; border-radius: 5px;">
+      <h1>Skate Spots:</h1>
+      <form style="border: 10px solid white;" 
+      action="/skatespots" method="POST">
       <label>
         Spot:
         <input type="text" name="name" autocomplete="off">
@@ -14,14 +16,15 @@
       </label>
       <button type="submit">Add Spot</button>
     </form>
-  <% } %>
-  <h2>All Spots:</h2>
-  <ul>
-    <% skatespots.forEach(skatespot => { %>
-     <li> 
-      <a href="/skatespots/<%= skatespot._id %>"><%= skatespot.name %></a> is <%= skatespot.bust ? 'bust' : 'not a bust' %>
-    </li>
-    <% }) %>
-  </ul>
+    <% } %>
+    <h2>All Spots:</h2>
+    <ul>
+      <% skatespots.forEach(skatespot => { %>
+        <li> 
+          <a href="/skatespots/<%= skatespot._id %>"><%= skatespot.name %></a> is <%= skatespot.bust ? 'bust' : 'not a bust' %>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
 </section>
 <%- include('../partials/footer') %>
