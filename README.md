@@ -17,9 +17,6 @@
 
 ### Resources
 * Fonts: Google Fonts
-* Out-side Help: James Potee
-  * [github link](https://github.com/jmsgnnr)
-  * [linkedin link]()
 
 ### Ice Box
 * Add favorite trick feature
