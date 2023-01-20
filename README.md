@@ -21,3 +21,4 @@
 ### Ice Box
 * Add favorite trick feature
 * Add ratings
+* CSS enhancements
