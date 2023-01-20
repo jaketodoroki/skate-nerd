@@ -2,9 +2,12 @@
 <%- include('../partials/nav') %>
 <section style="display: flex; justify-content: center;">
   <% if (user) { %>
-    <div style="border: 1px solid rgb(159, 85, 85); text-align:center; border-radius: 5px;">
-      <h1>Skate Spots:</h1>
-      <form style="border: 10px solid rgb(136, 91, 91);" 
+    <div style="text-align:center; border-radius: 5px;">
+      <h1>Add Spots</h1>
+      <h5>Welcome! This page is exclusive to street spots in the Denver area, please do not enter skate parks!!!
+        <br><br>
+      If a spot gets shut down, make sure to come back and mark as a bust</h5>
+      <form style="margin: 5px 5px 5px 5px;" 
       action="/skatespots" method="POST">
       <label>
         Spot:
@@ -21,7 +24,7 @@
     <ul>
       <% skatespots.forEach(skatespot => { %>
         <li> 
-          <a href="/skatespots/<%= skatespot._id %>"><%= skatespot.name %></a> is <%= skatespot.bust ? 'bust' : 'not a bust' %>
+          <a href="/skatespots/<%= skatespot._id %>"><%= skatespot.name %></a> is <%= skatespot.bust ? 'a bust' : 'not a bust' %>
         </li>
         <% }) %>
       </ul>

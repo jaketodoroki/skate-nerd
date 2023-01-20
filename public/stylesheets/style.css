@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  background-color: #1a1a1a;
+  background-color: rgb(214, 181, 181);
   color: #f6f6f6;
   /* Use a system font, if none are available use any found sans-sarif font */
   font-family: system-ui, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 
@@ -21,15 +21,18 @@ body {
 }
 
 nav {
+  font-family: 'Orbitron', sans-serif;
   text-align: right;
   display: flex;
-  background-color: #f6f6f6;
+  background-color: rgb(224, 189, 189);
   color: #1a1a1a;
   display: flex;
   align-items: center;
   justify-content: right;
   /* padding: 5px; */
-  height: 45px;
+  height: 60px;
+  border-bottom: 1px solid black;
+  box-shadow: 1px 1px 10px 5px black;
 }
 
 main {
@@ -41,18 +44,17 @@ main {
 
 h1 {
   font-size: 36px;
+  color: black;
 }
 
 h2 {
   font-size: 30px;
+  color: black;
 }
 
 h3 {
   font-size: 24px;
-}
-
-ul {
-  list-style-type: none;
+  text-align: center;
 }
 
 p, label, li, button, input {
@@ -67,10 +69,12 @@ button:hover {
 
 label {
   font-weight: bold;
+  color: black;
 }
 
 section {
   padding: 50px;
+  border: 1px solid black;
 }
 
 a {
@@ -82,23 +86,56 @@ pre {
 }
 
 nav > a {
-  border: 1px solid red;
   margin: 5px;
   text-decoration: none;
   font-size: 24px;
 }
 
-.btn {
-  margin: 16px 0;
-  
-}
+
 
 .link {
   padding: 10px 0;
-  font-size: 18px;
+  font-size: 10px;
   display: inline-block;
 }
 
 .profile-avatar {
   margin-top: 50px;
+}
+
+div, #spots_div {
+  font-family: 'Orbitron', sans-serif;
+  background-color: black;
+  border: 5px outset pink;
+  -webkit-text-stroke-width: .0001px;
+  -webkit-text-stroke-color: pink;
+  /* border-style: outset; */
+}
+ul {
+  background-color: black;
+  border-top: 5px outset pink;
+  list-style-type: none;
+}
+#spots_div {
+  max-width: 75%;
+  padding-top: 20px;
+  justify-content: center;
+  text-align: center;
+}
+
+#spot_ul {
+  list-style-type: none;
+  text-align: center;
+}
+
+ul#spot_ul {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+h5 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+li {
+  padding: 10px;
 }

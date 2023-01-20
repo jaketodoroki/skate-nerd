@@ -1,13 +1,40 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<section>
+<section
+>
+  <div id="spots_div">
+
   <p>Created by <%= skatespot.owner.name %>...</p>
-  <h1><%= skatespot.name %> skatespot</h1>
+  <h1><%= skatespot.name %> Skatespot</h1>
   <h2>This spot is <%= skatespot.bust ? 'bust' : 'not a bust' %></h2>
-  <ul>
+  
+  <% if (user) { %>
+    <form 
+    action="/skatespots/<%= skatespot._id %>/flip-bust?_method=PATCH"
+    method="POST"
+    >
+    <button class="btn" type="submit">
+      Make skatespot <%= skatespot.bust ? 'not bust' : 'bust' %>
+    </button>
+  </form>
+  <% } %>
+  <% if (skatespot.owner.equals(user?.profile._id)) { %>
+    <a href="/skatespots/<%= skatespot._id %>/edit">
+      <button class="btn">Edit this spot</button>
+    </a>
+    <form 
+    action="/skatespots/<%= skatespot._id %>?_method=DELETE"
+    method="POST"
+    >
+    <button class="btn" type="submit"> Delete Spot</button>
+  </form>
+  
+  <% } %>
+  <h2 id="rev_h2">Reviews</h2>
+  <ul id="spot_ul">
     <% skatespot.reviews?.forEach(review => { %>
-      <li>
+      <li id="spot_li">
         <%= review.content %> - <%= review.reviewer.name %>
         <% if (review.reviewer._id.equals(user?.profile._id)) { %>
           <form 
@@ -22,39 +49,16 @@
         </a>
         <% } %>
       </li>
-    <% }) %>
-  </ul>
+      <% }) %>
+    </ul>
+    <% if (user) { %>
+      <h3>Add a review</h3>
+      <form action="/skatespots/<%= skatespot._id %>/reviews" method="POST">
+        <textarea name="content" cols="30" rows="5"></textarea><br>
+        <button>Add Review</button>
+      </form>
+      <% } %>
+    </div>
+    </section>
     
-<% if (user) { %>
-<form 
-  action="/skatespots/<%= skatespot._id %>/flip-bust?_method=PATCH"
-  method="POST"
-  >
-  <button class="btn" type="submit">
-    Make skatespot <%= skatespot.bust ? 'not bust' : 'bust' %>
-  </button>
-</form>
-<% } %>
-<% if (skatespot.owner.equals(user?.profile._id)) { %>
-<a href="/skatespots/<%= skatespot._id %>/edit">
-  <button class="btn">Edit this spot</button>
-</a>
-<form 
-  action="/skatespots/<%= skatespot._id %>?_method=DELETE"
-  method="POST"
->
-<button class="btn" type="submit"> Delete Spot</button>
-</form>
-
-<% } %>
-<h2>Reviews</h2>
-<% if (user) { %>
-<h3>Add a review</h3>
-<form action="/skatespots/<%= skatespot._id %>/reviews" method="POST">
-<textarea name="content" cols="30" rows="5"></textarea><br>
-<button>Add Review</button>
-</form>
-<% } %>
-</section>
-        
-<%- include('../partials/footer') %>›
+    <%- include('../partials/footer') %>
